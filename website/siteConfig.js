@@ -23,8 +23,8 @@ const users = [
 const siteConfig = {
   title: 'Sails-ArangoJs', // Title for your website.
   tagline: 'The documentation site for sails-arangojs',
-  url: 'https://cloudhubke.github.co.ke', // Your website URL
-  baseUrl: '/sails-arangojs-docs/', // Base URL for your project */
+  url: 'https://sails-arangojs.netlify.com', // Your website URL
+  baseUrl: '/', // Base URL for your project */
   // For github.io type URLs, you would set the url and baseUrl like:
   //   url: 'https://facebook.github.io',
   //   baseUrl: '/test-site/',
