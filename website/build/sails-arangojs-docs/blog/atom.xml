@@ -6,8 +6,8 @@
     <generator>Feed for Node.js</generator>
     <link rel="alternate" href="https://sails-arangojs.netlify.com/blog"/>
     <subtitle>The best place to stay up-to-date with the latest Sails-ArangoJs news and events.</subtitle>
-    <logo>https://sails-arangojs.netlify.com/img/favicon.ico</logo>
-    <rights>Copyright © 2019 Your Name or Your Company Name</rights>
+    <logo>https://sails-arangojs.netlify.com/img/cloudhubicon256.png</logo>
+    <rights>Copyright © 2019 Cloud Hub Limited</rights>
     <entry>
         <title type="html"><![CDATA[New Version 1.0.0]]></title>
         <id>https://sails-arangojs.netlify.com/blog/2017/10/24/new-version-1.0.0.html</id>

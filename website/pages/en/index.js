@@ -15,8 +15,8 @@ const GridBlock = CompLibrary.GridBlock;
 
 class HomeSplash extends React.Component {
   render() {
-    const {siteConfig, language = ''} = this.props;
-    const {baseUrl, docsUrl} = siteConfig;
+    const { siteConfig, language = '' } = this.props;
+    const { baseUrl, docsUrl } = siteConfig;
     const docsPart = `${docsUrl ? `${docsUrl}/` : ''}`;
     const langPart = `${language ? `${language}/` : ''}`;
     const docUrl = doc => `${baseUrl}${docsPart}${langPart}${doc}`;
@@ -60,7 +60,7 @@ class HomeSplash extends React.Component {
 
     return (
       <SplashContainer>
-        <Logo img_src={`${baseUrl}img/undraw_monitor.svg`} />
+        <Logo img_src={`${baseUrl}img/sailsarangojs.png`} />
         <div className="inner">
           <ProjectTitle siteConfig={siteConfig} />
           <PromoSection>
@@ -76,14 +76,15 @@ class HomeSplash extends React.Component {
 
 class Index extends React.Component {
   render() {
-    const {config: siteConfig, language = ''} = this.props;
-    const {baseUrl} = siteConfig;
+    const { config: siteConfig, language = '' } = this.props;
+    const { baseUrl } = siteConfig;
 
     const Block = props => (
       <Container
         padding={['bottom', 'top']}
         id={props.id}
-        background={props.background}>
+        background={props.background}
+      >
         <GridBlock
           align="center"
           contents={props.children}
@@ -95,9 +96,15 @@ class Index extends React.Component {
     const FeatureCallout = () => (
       <div
         className="productShowcaseSection paddingBottom"
-        style={{textAlign: 'center'}}>
-        <h2>Feature Callout</h2>
-        <MarkdownBlock>These are features of this project</MarkdownBlock>
+        style={{ textAlign: 'center', backgroundColor: '#acdaff' }}
+      >
+        <a href="http://www.cloudhub.co.ke" rel="no_opener no_refferer">
+          <h2>We are ready to work with you.</h2>
+        </a>
+        <MarkdownBlock>
+          Talk to us. Our team is ready to help you and your business move to
+          the next level.
+        </MarkdownBlock>
       </div>
     );
 
@@ -105,13 +112,13 @@ class Index extends React.Component {
       <Block id="try">
         {[
           {
+            title: 'Built on top of SailsJs and Waterline',
             content:
-              'To make your landing page more attractive, use illustrations! Check out ' +
-              '[**unDraw**](https://undraw.co/) which provides you with customizable illustrations which are free to use. ' +
+              'We love SailsJs and we love waterline. Thats why we cloned waterline and built Sails-ArangoJs on top of it to leverage ' +
+              '[the power of sails](https://sailsjs.org/) which provides you with the best experience as a server side NodeJs developer ' +
               'The illustrations you see on this page are from unDraw.',
-            image: `${baseUrl}img/undraw_code_review.svg`,
+            image: `${baseUrl}img/sailsjs.png`,
             imageAlign: 'left',
-            title: 'Wonderful SVG Illustrations',
           },
         ]}
       </Block>
@@ -135,11 +142,11 @@ class Index extends React.Component {
       <Block background="light">
         {[
           {
+            title: 'ACID Transactions for your finality gurantee',
             content:
-              'Each new Docusaurus project has **randomly-generated** theme colors.',
-            image: `${baseUrl}img/undraw_youtube_tutorial.svg`,
+              'Each transaction on ArangoDB secures your gurantee that you data has been securely persisters with Atomicity, Consistency, Isolation and Durability for your highest level of confidence.\n\n Sails-ArangoJS adds no more nor extracts any less.',
+            image: `${baseUrl}img/transaction.svg`,
             imageAlign: 'right',
-            title: 'Randomly Generated Theme Colors',
           },
         ]}
       </Block>
@@ -149,16 +156,25 @@ class Index extends React.Component {
       <Block layout="fourColumn">
         {[
           {
-            content: 'This is the content of my feature',
-            image: `${baseUrl}img/undraw_react.svg`,
+            content:
+              'When you’re building your application, ultimately what matters most is having the right data model available for the task at hand.',
+            image: `${baseUrl}img/arangoicon.png`,
             imageAlign: 'top',
-            title: 'Feature One',
+            title: 'One engine. One query language. Multiple models.',
           },
           {
-            content: 'The content of my second feature',
+            content:
+              'Create schemaless models on the fly and sails-arangojs creates the collections, generated indexes, graph and gives your the power of a pro to get started quickly and easily.',
             image: `${baseUrl}img/undraw_operating_system.svg`,
             imageAlign: 'top',
-            title: 'Feature Two',
+            title: 'Seamless Integration',
+          },
+          {
+            content:
+              'ArangoDb has the best  documentation  for any modern database out there. Powered by an enthusiastic team, issues are resolved with speed. Updates and new features are released regularly with minimal or no breaking changes.',
+            image: `${baseUrl}img/undraw_code_review.svg`,
+            imageAlign: 'top',
+            title: 'Comprehensive documentation',
           },
         ]}
       </Block>

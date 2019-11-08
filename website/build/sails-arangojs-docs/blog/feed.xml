@@ -9,10 +9,10 @@
         <generator>Feed for Node.js</generator>
         <image>
             <title>Sails-ArangoJs Blog</title>
-            <url>https://sails-arangojs.netlify.com/img/favicon.ico</url>
+            <url>https://sails-arangojs.netlify.com/img/cloudhubicon256.png</url>
             <link>https://sails-arangojs.netlify.com/blog</link>
         </image>
-        <copyright>Copyright © 2019 Your Name or Your Company Name</copyright>
+        <copyright>Copyright © 2019 Cloud Hub Limited</copyright>
         <item>
             <title><![CDATA[New Version 1.0.0]]></title>
             <link>https://sails-arangojs.netlify.com/blog/2017/10/24/new-version-1.0.0.html</link>

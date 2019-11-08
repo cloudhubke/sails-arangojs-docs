@@ -11,18 +11,19 @@
 // List of projects/orgs using your project for the users page.
 const users = [
   {
-    caption: 'User1',
+    caption: 'Cloud Hub Limited',
     // You will need to prepend the image path with your baseUrl
     // if it is not '/', like: '/test-site/img/image.jpg'.
-    image: '/img/undraw_open_source.svg',
-    infoLink: 'https://www.facebook.com',
+    image: '/img/ch.png',
+    infoLink: 'https://www.cloudhub.co.ke',
     pinned: true,
   },
 ];
 
 const siteConfig = {
   title: 'Sails-ArangoJs', // Title for your website.
-  tagline: 'The documentation site for sails-arangojs',
+  tagline:
+    'Leverage the power of ArangoDB and Graphs in your NodeJs project. Thank us later.',
   url: 'https://sails-arangojs.netlify.com', // Your website URL
   baseUrl: '/', // Base URL for your project */
   // For github.io type URLs, you would set the url and baseUrl like:
@@ -48,14 +49,14 @@ const siteConfig = {
   users,
 
   /* path to images for header/footer */
-  headerIcon: 'img/favicon.ico',
-  footerIcon: 'img/favicon.ico',
-  favicon: 'img/favicon.ico',
+  headerIcon: 'img/cloudhubicon256.png',
+  footerIcon: 'img/cloudhubicon256.png',
+  favicon: 'img/cloudhubicon256.png',
 
   /* Colors for website */
   colors: {
-    primaryColor: '#532b95',
-    secondaryColor: '#3a1e68',
+    primaryColor: '#6920b0',
+    secondaryColor: '#fa41cc',
   },
 
   /* Custom fonts for website */
@@ -73,7 +74,7 @@ const siteConfig = {
   */
 
   // This copyright info is used in /core/Footer.js and blog RSS/Atom feeds.
-  copyright: `Copyright © ${new Date().getFullYear()} Your Name or Your Company Name`,
+  copyright: `Copyright © ${new Date().getFullYear()} Cloud Hub Limited`,
 
   highlight: {
     // Highlight.js theme to use for syntax highlighting in code blocks.
