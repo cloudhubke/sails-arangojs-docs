@@ -23,7 +23,7 @@ const users = [
 const siteConfig = {
   title: 'Sails-ArangoJs', // Title for your website.
   tagline:
-    'Leverage the power of ArangoDB and Graphs in your NodeJs project. Thank us later.',
+    'Leverage the power of ArangoDB and Graphs\n\nin your NodeJs project. Thank us later.',
   url: 'https://sails-arangojs.netlify.com', // Your website URL
   baseUrl: '/', // Base URL for your project */
   // For github.io type URLs, you would set the url and baseUrl like:
