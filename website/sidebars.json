@@ -1,10 +1,20 @@
 {
   "docs": {
-    "Docusaurus": ["doc1", "doc9"],
-    "First Category": ["doc2"],
-    "Second Category": ["doc3"]
-  },
-  "docs-other": {
-    "First Category": ["doc4", "doc5"]
+    "Getting Started": ["installation", "createmodel", "testing"],
+    "CRUD API": [
+      "create",
+      "crudmethods/create-each",
+      "crudmethods/update",
+      "crudmethods/updateOne",
+      "crudmethods/upsert",
+      "crudmethods/find",
+      "crudmethods/findOne",
+      "crudmethods/sum",
+      "crudmethods/avg",
+      "crudmethods/destroy",
+      "crudmethods/count"
+    ],
+    "Graph & Transactions": ["transactions", "graph"],
+    "Going Native": ["native"]
   }
 }

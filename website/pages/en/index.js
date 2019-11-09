@@ -125,20 +125,6 @@ class Index extends React.Component {
       </Block>
     );
 
-    const Description = () => (
-      <Block background="dark">
-        {[
-          {
-            content:
-              'This is another description of how this project is useful',
-            image: `${baseUrl}img/undraw_note_list.svg`,
-            imageAlign: 'right',
-            title: 'Description',
-          },
-        ]}
-      </Block>
-    );
-
     const LearnHow = () => (
       <Block background="light">
         {[
@@ -199,7 +185,7 @@ class Index extends React.Component {
       return (
         <div className="productShowcaseSection paddingBottom">
           <h2>Who is Using This?</h2>
-          <p>This project is used by all these people</p>
+          <p>This project is used by all these projects</p>
           <div className="logos">{showcase}</div>
           <div className="more-users">
             <a className="button" href={pageUrl('users.html')}>
@@ -218,7 +204,6 @@ class Index extends React.Component {
           <FeatureCallout />
           <LearnHow />
           <TryOut />
-          <Description />
           <Showcase />
         </div>
       </div>

@@ -18,6 +18,46 @@ const users = [
     infoLink: 'https://www.cloudhub.co.ke',
     pinned: true,
   },
+  {
+    caption: 'Bonded Groceries',
+    // You will need to prepend the image path with your baseUrl
+    // if it is not '/', like: '/test-site/img/image.jpg'.
+    image: '/img/bondedgroceries.png',
+    infoLink: 'https://www.bondedgroceries.co.ke',
+    pinned: true,
+  },
+  {
+    caption: 'Instaveg Limited',
+    // You will need to prepend the image path with your baseUrl
+    // if it is not '/', like: '/test-site/img/image.jpg'.
+    image: '/img/instaveg.jpg',
+    infoLink: 'https://www.instaveg.co.ke',
+    pinned: true,
+  },
+  {
+    caption: 'AgriPro',
+    // You will need to prepend the image path with your baseUrl
+    // if it is not '/', like: '/test-site/img/image.jpg'.
+    image: '/img/agripro.png',
+    infoLink: 'https://agripro.cloudhub.co.ke',
+    pinned: true,
+  },
+  {
+    caption: 'Manifested Publishers',
+    // You will need to prepend the image path with your baseUrl
+    // if it is not '/', like: '/test-site/img/image.jpg'.
+    image: '/img/manifested.png',
+    infoLink: 'https://wwww.manifestedpublishers.com',
+    pinned: true,
+  },
+  {
+    caption: 'J-Vuka',
+    // You will need to prepend the image path with your baseUrl
+    // if it is not '/', like: '/test-site/img/image.jpg'.
+    image: '/img/jvuka.png',
+    infoLink: 'https://wwww.jvuka.com',
+    pinned: true,
+  },
 ];
 
 const siteConfig = {
@@ -39,17 +79,16 @@ const siteConfig = {
 
   // For no header links in the top nav bar -> headerLinks: [],
   headerLinks: [
-    { doc: 'doc1', label: 'Docs' },
-    { doc: 'doc4', label: 'API' },
-    { page: 'help', label: 'Help' },
-    { blog: true, label: 'Blog' },
+    { doc: 'installation', label: 'Docs' },
+    { doc: 'create', label: 'API' },
+    // { blog: true, label: 'Blog' },
   ],
 
   // If you have users set above, you add it here:
   users,
 
   /* path to images for header/footer */
-  headerIcon: 'img/cloudhubicon256.png',
+  headerIcon: 'img/arangoicon.png',
   footerIcon: 'img/cloudhubicon256.png',
   favicon: 'img/cloudhubicon256.png',
 
@@ -78,7 +117,7 @@ const siteConfig = {
 
   highlight: {
     // Highlight.js theme to use for syntax highlighting in code blocks.
-    theme: 'default',
+    theme: 'atom-one-dark',
   },
 
   // Add custom scripts here that would be placed in <script> tags.
@@ -105,7 +144,7 @@ const siteConfig = {
 
   // You may provide arbitrary config keys to be used as needed by your
   // template. For example, if you need your repo's URL...
-  //   repoUrl: 'https://github.com/facebook/test-site',
+  repoUrl: 'https://github.com/cloudhubke/sails-arangojs-docs',
 };
 
 module.exports = siteConfig;

@@ -9,7 +9,7 @@
         <generator>Feed for Node.js</generator>
         <image>
             <title>Sails-ArangoJs Blog</title>
-            <url>https://sails-arangojs.netlify.com/img/cloudhubicon256.png</url>
+            <url>https://sails-arangojs.netlify.com/img/arangoicon.png</url>
             <link>https://sails-arangojs.netlify.com/blog</link>
         </image>
         <copyright>Copyright © 2019 Cloud Hub Limited</copyright>
