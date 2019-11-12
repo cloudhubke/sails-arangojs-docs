@@ -1,7 +1,7 @@
 ---
 id:create
 title: CRUD API
-sidebar_label: Create
+sidebar_label: create
 ---
 
 Every model depending on the `classType` exposes a number of methods to perform crud operations on the database. The following methods are available for classType `Vertex`. A vertex in ArangoDB is just a normal document. It may or not be connected to another vertex through an edge. For more information abbout graphs go to the [official documentation](https://www.arangodb.com/docs/stable/drivers/js-reference-graph.html)
@@ -33,11 +33,11 @@ The method used to insert a document into a collection.
 
 ```js
 const created = await User.create({
-  full_name: 'Angela W.',
-  email: 'angelow@gmail.com',
-  password: 'xxxxx',
+  full_name: "Angela W.",
+  email: "angelow@gmail.com",
+  password: "xxxxx"
 }).meta({
-  fetch: true,
+  fetch: true
 });
 
 // Do something with created record.
@@ -51,9 +51,9 @@ The above code is the same as the code below
 
 ```js
 await User.create({
-  full_name: 'Angela W.',
-  email: 'angelow@gmail.com',
-  password: 'xxxxx',
+  full_name: "Angela W.",
+  email: "angelow@gmail.com",
+  password: "xxxxx"
 }).exec(function(error, created) {
   if (error) {
     //handle errorr
