@@ -12,7 +12,8 @@
       "crudmethods/sum",
       "crudmethods/avg",
       "crudmethods/destroy",
-      "crudmethods/count"
+      "crudmethods/count",
+      "crudmethods/aggregate"
     ],
     "Graph & Transactions": ["transactions", "graph"],
     "Going Native": ["native"]
