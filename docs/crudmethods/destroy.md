@@ -12,10 +12,10 @@ The method used to delete a document or documents from a collection.
 
 ```js
 const deleted = await User.destroy({
-  id: '3787778',
+  id: "3787778"
 }).fetch();
 
-// Do something with created records.
+// Do something with deleted records.
 ```
 
 if .fetch() method is passed. The method returns the deleted documents.

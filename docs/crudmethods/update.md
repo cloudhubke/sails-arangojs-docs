@@ -12,12 +12,12 @@ The method used to update one or more documents that meets a certain criteria
 
 ```js
 const updated = await User.update({
-  email: 'angelow@gmail.com',
+  email: "angelow@gmail.com"
 })
-  .set({ full_name: 'Angela W. K.', password: 'zzzzz' })
+  .set({ full_name: "Angela W. K.", password: "zzzzz" })
   .fetch();
 
-// Do something with created records.
+// Do something with updated records.
 ```
 
 The .fetch() method will make sure that the method returns the updated records in an array format.
@@ -43,7 +43,7 @@ The .fetch() method will make sure that the method returns the updated records i
 
 ```js
 const students = await Student.find({
-  age: { $lt: 15 },
+  age: { $lt: 15 }
 });
 ```
 
@@ -51,7 +51,7 @@ const students = await Student.find({
 
 ```js
 const users = await User.find({
-  email: { $like: 'angela%' },
+  email: { $like: "angela%" }
 });
 ```
 

@@ -13,17 +13,17 @@ the attribute must be of type `number`
 ### Usage
 
 ```js
-const documents = await Cart.sum('price');
+const sum = await Cart.sum("price");
 
-// Do something with created records.
+// Do something with sum.
 ```
 
 The above method sums the `price` attribute of the model `cart`.
 
 ```js
-const documents = await Cart.sum('price', { category: 'groceries' });
+const sum = await Cart.sum("price", { category: "groceries" });
 
-// Do something with created records.
+// Do something with sum.
 ```
 
 The above method sums the `price` attribute of the model `cart` where `category` of the products is `groceries`.

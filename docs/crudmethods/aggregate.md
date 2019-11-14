@@ -35,7 +35,7 @@ const data = await Model.aggregate({
   }
 });
 
-// Do something with created records.
+// Do something with the data.
 ```
 
 ### Operators
@@ -52,6 +52,14 @@ All Arango functions are supported. For example;
 | \$max    | MAX     |
 
 This means you just prefix the function with a `$`;
+
+also variables should include the prefix `$`, if not.
+
+the `$concat` string function required an array. eg
+
+```
+ {$concat: ["'Year: '": '$year']}
+```
 
 ## Rules.
 
@@ -170,13 +178,37 @@ FOR u IN users
   }
 ```
 
+### \$let
+
+Can be used to declare a variable that can be used further into the statement.
+
+Example
+
+```
+  $let: {
+    length: {$length: '$group}
+  }
+```
+
+if equivalet to
+
+```
+  LET length = LENGHT(group)
+```
+
 ### \$sort
 
 Can be used to sort results.
 
 ```
-$sort: { Weight: 'DESC' },
+$sort: { length: 'DESC' },
 
+```
+
+is equivalent to
+
+```
+  SORT length DESC
 ```
 
 ### \$return

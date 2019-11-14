@@ -13,15 +13,15 @@ the attribute must be of type `number`
 ### Usage
 
 ```js
-const documents = await User.avg('age');
+const avg = await User.avg("age");
 
-// Do something with created records.
+// Do something with avg
 ```
 
 ```js
-const documents = await User.avg('age', { age: { $gt: 12 } });
+const avg = await User.avg("age", { age: { $gt: 12 } });
 
-// Do something with created records.
+// Do something with avg
 ```
 
 Please refer to the find methods for the operators that can be implemented in the criteria.

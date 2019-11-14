@@ -14,10 +14,10 @@ The criteria must be an object
 
 ```js
 const updated = await User.find({
-  id: '3787778',
-}).set({ full_name: 'Angela W. K.', password: 'zzzzz' });
+  id: "3787778"
+}).set({ full_name: "Angela W. K.", password: "zzzzz" });
 
-// Do something with created records.
+// Do something with the records.
 ```
 
 The above is equivalent to the below AQL:
@@ -49,7 +49,7 @@ The above is equivalent to the below AQL:
 
 ```js
 const students = await Student.find({
-  age: { $lt: 15 },
+  age: { $lt: 15 }
 });
 ```
 
@@ -57,7 +57,7 @@ const students = await Student.find({
 
 ```js
 const users = await User.find({
-  email: { $like: 'angela%' },
+  email: { $like: "angela%" }
 });
 ```
 
@@ -66,8 +66,58 @@ The example above will find all records that starts with 'angela' in the email f
 ### Wild card search
 
 ```js
-
     const users  = await User.find({
         email: {$like '%angela%'}
     })
+```
+
+## Sorting
+
+The sort attribute can either be a string in form of `id ASC` or `id DESC` and it can also be an array of objects in form of;
+
+```js
+[{ id: "ASC", name: "DESC" }];
+```
+
+Example
+
+```js
+const documents = await Product.find({
+  price: { $gt: 2000 }
+}).sort("price ASC");
+```
+
+This can also be written as
+
+```js
+const documents = await Product.find({
+  price: { $gt: 2000 }
+}).sort([{ price: "ASC" }]);
+```
+
+## Limit && Skip
+
+Skip and limit can be used for pagination.
+
+The followitg methods will return 5 records in page 3.
+
+```js
+const documents = await Product.find({
+  price: { $gt: 2000 }
+})
+  .limit(5)
+  .skip(2)
+  .select(["ProductName"]);
+```
+
+## Selecting Attributes
+
+Please refer the `select` method on how to specify the attributes you would like to return by specifying an array of attributes.
+
+```js
+const documents = await Product.find({
+  price: { $gt: 2000 }
+})
+  .limit(5)
+  .select(["ProductName"]);
 ```

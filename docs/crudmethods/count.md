@@ -13,15 +13,15 @@ To count all records, use an empty criteria. Ie `count()`or `count({})`
 ### Usage
 
 ```js
-const documents = await User.count({});
+const count = await User.count({});
 
-// Do something with created records.
+// Do something with count.
 ```
 
 ```js
-const documents = await User.count({ age: { $gt: 12 } });
+const count = await User.count({ age: { $gt: 12 } });
 
-// Do something with created records.
+// Do something with count.
 ```
 
 Please refer to the find methods for the operators that can be implemented in the criteria.

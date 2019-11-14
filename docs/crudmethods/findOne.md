@@ -14,10 +14,10 @@ The criteria must be an object.
 
 ```js
 const updated = await User.findOne({
-  id: '3787778',
+  id: "3787778"
 });
 
-// Do something with created records.
+// Do something with record;
 ```
 
 The method returns a single document in object format or null if none was found.
@@ -30,17 +30,17 @@ The following example,
 
 ```js
 const user = await User.findOne({
-  email: 'angelow@gmail.com',
-  password: 'yyyy',
+  email: "angelow@gmail.com",
+  password: "yyyy"
 });
 ```
 
 is equivalent to AQL
 
 ```js
-    FOR u in user
-        FILTER u.email=='angelow@gmail.com' AND password=='yyyy'
-        return u;
+FOR u in user
+    FILTER u.email=='angelow@gmail.com' AND password=='yyyy'
+    return u;
 ```
 
 ### Other Operators used in the find statement
@@ -62,29 +62,14 @@ The below operators can be combined just as they are used in the find statement.
 
 `$has` is used to query fields of `Array<string> or Array<number>` example {Roles:{\$has:'Admin'}} will get users that has a role of Admin supposing the `Roles` field has a format of ['Admin', 'Owner' ...]
 
-### \$lt Example
+## Selecting Attributes
+
+Please refer the `select` method on how to specify the attributes you would like to return by specifying an array of attributes.
 
 ```js
-const students = await Student.find({
-  age: { $lt: 15 },
-});
-```
-
-### \$like Example
-
-```js
-const users = await User.find({
-  email: { $like: 'angela%' },
-});
-```
-
-The example above will find all records that starts with 'angela' in the email field.
-
-### Wild card search
-
-```js
-
-    const users  = await User.find({
-        email: {$like '%angela%'}
-    })
+const documents = await Product.findOne({
+  price: { $gt: 2000 }
+})
+  .limit(5)
+  .select(["ProductName"]);
 ```

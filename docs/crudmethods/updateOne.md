@@ -12,10 +12,10 @@ The method used to update One record in a collection that meets a certain criter
 
 ```js
 const updated = await User.updateOne({
-  id: '3787778',
-}).set({ full_name: 'Angela W. K.', password: 'zzzzz' });
+  id: "3787778"
+}).set({ full_name: "Angela W. K.", password: "zzzzz" });
 
-// Do something with created records.
+// Do something with the record;
 ```
 
 by default, the .fetch() method is passed. The method returns the updated record in an object format.
