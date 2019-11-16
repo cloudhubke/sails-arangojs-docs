@@ -22,7 +22,7 @@ by default, the .fetch() method is passed. The method returns the updated record
 
 ### Update Operators
 
-The following key words are implemented in the update query
+The following key words are implemented in the update/updateOne query
 
 | Operator     | Operation                                                           |
 | :----------- | :------------------------------------------------------------------ |
@@ -35,3 +35,26 @@ The following key words are implemented in the update query
 | \$push       | Add Item at the end of an array                                     |
 | \$pushset    | Add Item at the end of an array if it does not exist in the array   |
 | \$pull       | Remove items from an array, accepts arrray                          |
+
+
+### \$pushset and \$unshiftset Example
+
+```js
+const users = await Comment.updatedOne(
+  { id: "c234123"},
+  { replies: { $pushset: reply }, likes: { $unshiftset: user.id } }
+);
+```
+The \$pushset operator adds a reply to a comment's replies array if it doesn't already exist and also adds the user's id to the list of likes
+
+### \$pull and \$shift Example
+
+```js
+const users = await Comment.updateOne(
+  { id: "c234123"},
+  { replies: { $pull: [reply1, reply2] }, likes : {$shift: true}}
+  
+  //note that \$pull requires that items to pull be an array
+);
+```
+\$pull would would remove the specific replies irrespective of position in the array while \$shift would remove the first user ID in the array.
