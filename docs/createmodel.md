@@ -35,12 +35,14 @@ By default, if `graph` is enabled in the datastore config, the email index with 
 
 ## Additional Features
 
-When defining Models, you can specify the class of the model to be mapped on arangodb
+When defining Models, you can specify the class of the model to be mapped on arangodb. Its alos easy to create custom indexes with a combination of field attributes for your data integrity.
 
 ```
   classType: 'Vertex', //Either of Vertex, Edge (default is Vertex)
-  .
-  .
+  indexes: [
+    { fields: ['Field1', 'Field2']},
+    { fields: ['Field2', 'Field3'], unique: true },
+  ],
   attributes: {
        username: { type: 'string' },
   }

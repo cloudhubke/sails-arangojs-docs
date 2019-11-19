@@ -20,9 +20,11 @@ const updated = await User.update({
 // Do something with updated records.
 ```
 
+## .Fetch()
+
 The .fetch() method will make sure that the method returns the updated records in an array format.
 
-### Other Operators
+### Filter Operators
 
 | Operator | Meaning                        |
 | :------- | :----------------------------- |
@@ -42,26 +44,56 @@ The .fetch() method will make sure that the method returns the updated records i
 ### \$lt Example
 
 ```js
-const students = await Student.find({
+const students = await Student.update({
   age: { $lt: 15 }
+}).set({
+  AllowedAccess: true
 });
 ```
 
 ### \$like Example
 
 ```js
-const users = await User.find({
-  email: { $like: "angela%" }
+const students = await User.update({
+  paid: true
+}).set({
+  AllowedAccess: true
 });
 ```
 
-The example above will find all records that starts with 'angela' in the email field.
+The example above will update all records that starts with 'angela' in the email field.
 
-### Wild card search
+## Method Chaining vs Parameters Array
+
+In the above examples, we have used method chaining tp update our documents. However, it is possible to use other methods. Example:
 
 ```js
-
-    const users  = await User.find({
-        email: {$like '%angela%'}
-    })
+const students = await User.update(
+  {
+    paid: true
+  },
+  {
+    AllowedAccess: true
+  }
+).fetch();
 ```
+
+## Other Data Manipulation Operators
+
+The following are some of the implemented data manipulation operators `update()` and `updateOne()` methods.
+
+| Operator     | Operation                                                           |
+| :----------- | :------------------------------------------------------------------ |
+| \$inc        | Increase or decrease a value                                        |
+| \$inc        | Increase or decrease a value                                        |
+| \$pop        | Remove last item of array                                           |
+| \$shift      | Remove first item of array                                          |
+| \$unshift    | Add Item in the front of an array                                   |
+| \$unshiftset | Add Item in the front of an array if it does not exist ih the array |
+| \$push       | Add Item at the end of an array                                     |
+| \$pushset    | Add Item at the end of an array if it does not exist in the array   |
+| \$pull       | Remove items from an array, accepts arrray                          |
+
+## More examples
+
+More examples of using this operator can be found in the [updateOne method](updateOne)

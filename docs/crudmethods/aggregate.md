@@ -59,6 +59,7 @@ the `$concat` string function required an array. eg
 
 ```
  {$concat: ["'Year: '": '$year']}
+
 ```
 
 ## Rules.
