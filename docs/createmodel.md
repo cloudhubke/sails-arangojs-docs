@@ -33,6 +33,21 @@ attributes: {
 
 By default, if `graph` is enabled in the datastore config, the email index with `sparse false` will be created the moment sails is lifted
 
+## Edge Definitions
+
+Edge definitions are put in an edge classType to tell the graph the direction from which an edge makes.
+
+```js
+attributes: {
+  edgeDefinition: {
+    from: ['airport'],
+    to: ['airport']
+  },
+
+```
+
+In the above example, an edge definition shows a link from one airport to another.
+
 ## Additional Features
 
 When defining Models, you can specify the class of the model to be mapped on arangodb. Its alos easy to create custom indexes with a combination of field attributes for your data integrity.

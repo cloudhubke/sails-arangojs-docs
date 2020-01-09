@@ -5,11 +5,12 @@ title: Graph
 
 ## graph databases methods:
 
-| Method              | Status | Category |
-| :------------------ | :----- | :------- |
-| createEdge          | Done   | DML      |
-| getOutboundVertices | Done   | DQL      |
-| getInboundVertices  | Done   | DQL      |
+| Method       | Status | Category |
+| :----------- | :----- | :------- |
+| createEdge   | Done   | DML      |
+| findAny      | Done   | DQL      |
+| findInbound  | Done   | DQL      |
+| findOutbound | Done   | DQL      |
 
 ## createEdge Method
 
@@ -51,21 +52,53 @@ The following is an example of creating an edge.
       })
 ```
 
-## getOutboundVertices && getInboundVertices Methods
+## findAny, findInbound, findOutbound Methods
 
-The following is an example of getting vertices connecting to a node
+The following is an example of getting vertices connecting to a node. If `graph` if not set to true in the datastore config, You will have to supply the edgeCollctions array arributo of the the ANONYMOUS graph. Otherwise you dont have to.
 
 ```
      //Flights connecting from an airport
-     const airports = await Airport.getOutboundVertices(['flights], 'airport/00M');
+     const airports = await Airport.findOutbound('00M', ['flights]);
+
+     // or
+
+    //Flights connecting to or from an airport
+    const airports = await Airport.findAny(['00M', ['flights]);
+
+```
+
+## Query graph
+
+```
+     //Flights connecting from an airport
+     const airports = await Airport.findOutbound('00M');
 
      // or
 
     //Flights connecting to an airport
-    const airports = await Airport.getInboundVertices(['flights], 'airport/00M');
+    const airports = await Airport.findInbound('00M');
 
+     // or
+    //Flights connecting to or from an airport
+    const airports = await Airport.findAny('00M');
 ```
 
 the above will return an array of nodes and edges. [{vertex: {...}, edge:{...}}, ...]
 
+## .whereVertex({...}) and whereEdge({...}) methods
+
 You can filter Vertices and Edges using .whereVertex({...}) and whereEdge({...}) methods.
+
+```
+  const airports = await Airport.findAny('00M').whereVertex({VIP: true}).whereEdge({FlightNum: 2938});
+
+```
+
+## Sorting
+
+You can sort just like in any model, but you have to let the adapter know if its `edge` or `å` sorting
+
+```
+const airports = await Airport.findAny('00M').sort('edge.FlightNum')
+
+```
