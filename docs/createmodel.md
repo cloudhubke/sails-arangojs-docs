@@ -16,6 +16,27 @@ The best way to create a new model in sails is to use the CLI.
     sails generate api user
 ```
 
+## defaultDatastoreBuild
+
+This property allows yout to define the datastores in which the model will be created. The default option is `only`. Meaning the model will be built on the `default` datastore only.
+
+The available options are:
+
+| Option  | Meaning                         |
+| :------ | :------------------------------ |
+| only    | Build on default datastore only |
+| include | Build in all datastores         |
+| exclude | Build in all except `default`   |
+
+```js
+attributes: {
+      full_name: { type: 'string' },
+      email: {type: 'string', unique: true, required: true },
+      password: {type: 'string'}
+ }
+
+```
+
 This command will create a new model user.
 
 ## Adding attributes
@@ -38,11 +59,16 @@ By default, if `graph` is enabled in the datastore config, the email index with 
 Edge definitions are put in an edge classType to tell the graph the direction from which an edge makes.
 
 ```js
-attributes: {
-  edgeDefinition: {
+
+edgeDefinition: {
     from: ['airport'],
     to: ['airport']
   },
+
+attributes: {
+  ...
+}
+
 
 ```
 
