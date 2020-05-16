@@ -29,15 +29,12 @@ The available options are:
 | exclude | Build in all except `default`   |
 
 ```js
-attributes: {
-      full_name: { type: 'string' },
-      email: {type: 'string', unique: true, required: true },
-      password: {type: 'string'}
- }
+  defaultDatastoreBuild: 'include',
+  attributes: {
+        ...
+  }
 
 ```
-
-This command will create a new model user.
 
 ## Adding attributes
 
