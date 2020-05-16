@@ -59,15 +59,17 @@ By default, if `graph` is enabled in the datastore config, the email index with 
 Edge definitions are put in an edge classType to tell the graph the direction from which an edge makes.
 
 ```js
-
-edgeDefinition: {
+  classType: 'Edge',
+  edgeDefinition: {
     from: ['airport'],
     to: ['airport']
   },
 
-attributes: {
-  ...
-}
+  attributes: {
+    departureTime: {
+      type: 'string'
+    },
+    ....
 
 
 ```
