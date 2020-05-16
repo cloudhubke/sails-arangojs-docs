@@ -16,20 +16,14 @@ The best way to create a new model in sails is to use the CLI.
     sails generate api user
 ```
 
-## defaultDatastoreBuild
+## tenantType
 
-This property allows yout to define the datastores in which the model will be created. The default option is `only`. Meaning the model will be built on the `default` datastore only.
+In multi tenancy databases, We can define the tenants in which this model will be built. It defaults to `['default']`, Meaning the model will be built on the `default` datastore only.
 
-The available options are:
-
-| Option  | Meaning                         |
-| :------ | :------------------------------ |
-| only    | Build on default datastore only |
-| include | Build in all datastores         |
-| exclude | Build in all except `default`   |
+If specified, all tenant datastores with the specified tenant type property will have the datastore built in them.
 
 ```js
-  defaultDatastoreBuild: 'include',
+  tenantType: ['default', 'school'],
   attributes: {
         ...
   }
