@@ -14,7 +14,7 @@ The criteria must be an object.
 
 ```js
 const updated = await User.findOne({
-  id: "3787778"
+  id: "3787778",
 });
 
 // Do something with record;
@@ -31,7 +31,7 @@ The following example,
 ```js
 const user = await User.findOne({
   email: "angelow@gmail.com",
-  password: "yyyy"
+  password: "yyyy",
 });
 ```
 
@@ -47,18 +47,19 @@ FOR u in user
 
 The below operators can be combined just as they are used in the find statement.
 
-| Operator | Meaning                        |
-| :------- | :----------------------------- |
-| \$gt     | >                              |
-| \$lt     | <                              |
-| \$gte    | >=                             |
-| \$lte    | <=                             |
-| \$ne     | !=                             |
-| \$in     | IN                             |
-| \$nin    | NOT IN                         |
-| \$like   | LIke                           |
-| \$has    | HAS                            |
-| \$betwen | BETWEEN two values of an array |
+| Operator  | Meaning                        |
+| :-------- | :----------------------------- |
+| \$gt      | >                              |
+| \$lt      | <                              |
+| \$gte     | >=                             |
+| \$lte     | <=                             |
+| \$ne      | !=                             |
+| \$in      | IN                             |
+| \$nin     | NOT IN                         |
+| \$like    | LIke                           |
+| \$notlike | NOT LIke                       |
+| \$has     | HAS                            |
+| \$betwen  | BETWEEN two values of an array |
 
 `$has` is used to query fields of `Array<string> or Array<number>` example {Roles:{\$has:'Admin'}} will get users that has a role of Admin supposing the `Roles` field has a format of ['Admin', 'Owner' ...]
 
@@ -68,7 +69,7 @@ Please refer the `select` method on how to specify the attributes you would like
 
 ```js
 const documents = await Product.findOne({
-  price: { $gt: 2000 }
+  price: { $gt: 2000 },
 })
   .limit(5)
   .select(["ProductName"]);

@@ -14,7 +14,7 @@ The criteria must be an object
 
 ```js
 const updated = await User.find({
-  id: "3787778"
+  id: "3787778",
 }).set({ full_name: "Angela W. K.", password: "zzzzz" });
 
 // Do something with the records.
@@ -30,18 +30,19 @@ The above is equivalent to the below AQL:
 
 ### Other Operators
 
-| Operator | Meaning                        |
-| :------- | :----------------------------- |
-| \$gt     | >                              |
-| \$lt     | <                              |
-| \$gte    | >=                             |
-| \$lte    | <=                             |
-| \$ne     | !=                             |
-| \$in     | IN                             |
-| \$nin    | NOT IN                         |
-| \$like   | LIke                           |
-| \$has    | HAS                            |
-| \$betwen | BETWEEN two values of an array |
+| Operator  | Meaning                        |
+| :-------- | :----------------------------- |
+| \$gt      | >                              |
+| \$lt      | <                              |
+| \$gte     | >=                             |
+| \$lte     | <=                             |
+| \$ne      | !=                             |
+| \$in      | IN                             |
+| \$nin     | NOT IN                         |
+| \$like    | LIke                           |
+| \$notlike | NOT LIke                       |
+| \$has     | HAS                            |
+| \$betwen  | BETWEEN two values of an array |
 
 `$has` is used to query fields of `Array<string> or Array<number>` example {Roles:{\$has:'Admin'}} will get users that has a role of Admin supposing the `Roles` field has a format of ['Admin', 'Owner' ...]
 
@@ -49,7 +50,7 @@ The above is equivalent to the below AQL:
 
 ```js
 const students = await Student.find({
-  age: { $lt: 15 }
+  age: { $lt: 15 },
 });
 ```
 
@@ -57,7 +58,7 @@ const students = await Student.find({
 
 ```js
 const users = await User.find({
-  email: { $like: "angela%" }
+  email: { $like: "angela%" },
 });
 ```
 
@@ -83,7 +84,7 @@ Example
 
 ```js
 const documents = await Product.find({
-  price: { $gt: 2000 }
+  price: { $gt: 2000 },
 }).sort("price ASC");
 ```
 
@@ -91,7 +92,7 @@ This can also be written as
 
 ```js
 const documents = await Product.find({
-  price: { $gt: 2000 }
+  price: { $gt: 2000 },
 }).sort([{ price: "ASC" }]);
 ```
 
@@ -103,7 +104,7 @@ The followitg methods will return 5 records in page 3.
 
 ```js
 const documents = await Product.find({
-  price: { $gt: 2000 }
+  price: { $gt: 2000 },
 })
   .limit(5)
   .skip(2)
@@ -116,7 +117,7 @@ Please refer the `select` method on how to specify the attributes you would like
 
 ```js
 const documents = await Product.find({
-  price: { $gt: 2000 }
+  price: { $gt: 2000 },
 })
   .limit(5)
   .select(["ProductName"]);
