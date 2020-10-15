@@ -122,3 +122,18 @@ const documents = await Product.find({
   .limit(5)
   .select(["ProductName"]);
 ```
+
+## Using ArangoDB Functions
+
+You can use a variety of functions to filter the records in a collection by functions. For example the `LENGTH()` Function in ArangoDb returns the length of a string or an array.
+
+The Following is an axample of how to use functions
+
+```js
+const documents = await Collection.find({
+  "LENGTH(record.ArrayField)": { $gt: 5 },
+}).limit(5);
+```
+
+The above will querry by filtering the `ArrayField` field, where the array length is greater than 5.
+Please note the `record.` part. It is important to show we are refering to the currect document in the query.
