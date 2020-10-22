@@ -2,6 +2,7 @@
   "docs": {
     "Getting Started": ["installation", "createmodel", "testing"],
     "CRUD API": [
+      "crudmethods/let",
       "create",
       "crudmethods/create-each",
       "crudmethods/update",
