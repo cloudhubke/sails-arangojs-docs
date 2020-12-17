@@ -1,0 +1,280 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Foxx Services · Sails-ArangoJs</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="Foxx services are very powerful in ArangoDb. The allow you to implement custom APIs inside the database. [you can read mote about foxx service here](https://www.arangodb.com/docs/stable/foxx.html)"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Foxx Services · Sails-ArangoJs"/><meta property="og:type" content="website"/><meta property="og:url" content="https://sails-arangojs.netlify.com/"/><meta property="og:description" content="Foxx services are very powerful in ArangoDb. The allow you to implement custom APIs inside the database. [you can read mote about foxx service here](https://www.arangodb.com/docs/stable/foxx.html)"/><meta property="og:image" content="https://sails-arangojs.netlify.com/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://sails-arangojs.netlify.com/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/img/cloudhubicon256.png"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/arangoicon.png" alt="Sails-ArangoJs"/><h2 class="headerTitleWithLogo">Sails-ArangoJs</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/docs/installation" target="_self">Docs</a></li><li class="siteNavGroupActive"><a href="/docs/create" target="_self">API</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Going Native</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Getting Started</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/installation">Installation</a></li><li class="navListItem"><a class="navItem" href="/docs/createmodel">Creating Models</a></li><li class="navListItem"><a class="navItem" href="/docs/testing">Testing</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">CRUD API</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/crudmethods/let">let</a></li><li class="navListItem"><a class="navItem" href="/docs/create">create</a></li><li class="navListItem"><a class="navItem" href="/docs/crudmethods/create-each">createEach</a></li><li class="navListItem"><a class="navItem" href="/docs/crudmethods/update">update</a></li><li class="navListItem"><a class="navItem" href="/docs/crudmethods/updateOne">updateOne</a></li><li class="navListItem"><a class="navItem" href="/docs/crudmethods/upsert">upsert</a></li><li class="navListItem"><a class="navItem" href="/docs/crudmethods/find">find</a></li><li class="navListItem"><a class="navItem" href="/docs/crudmethods/findOne">findOne</a></li><li class="navListItem"><a class="navItem" href="/docs/crudmethods/sum">sum</a></li><li class="navListItem"><a class="navItem" href="/docs/crudmethods/avg">avg</a></li><li class="navListItem"><a class="navItem" href="/docs/crudmethods/destroy">destroy</a></li><li class="navListItem"><a class="navItem" href="/docs/crudmethods/count">count</a></li><li class="navListItem"><a class="navItem" href="/docs/crudmethods/aggregate">aggregate</a></li><li class="navListItem"><a class="navItem" href="/docs/crudmethods/sample">sample</a></li><li class="navListItem"><a class="navItem" href="/docs/crudmethods/findNear">findNear</a></li><li class="navListItem"><a class="navItem" href="/docs/crudmethods/findWithCount">findWithCount</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Graph &amp; Transactions</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/transactions">Implementing transacations</a></li><li class="navListItem"><a class="navItem" href="/docs/graph">Graph</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Going Native</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/native">Native Methods</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/foxx">Foxx Services</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">Foxx Services</h1></header><article><div><span><p>Foxx services are very powerful in ArangoDb. The allow you to implement custom APIs inside the database. <a href="https://www.arangodb.com/docs/stable/foxx.html">you can read mote about foxx service here</a></p>
+<p>In sails-arangodb foxx services can be installed at runtime and called from transactions created inside the sails application.</p>
+<h2><a class="anchor" aria-hidden="true" id="creating-a-basic-foxx-service"></a><a href="#creating-a-basic-foxx-service" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Creating a basic foxx service</h2>
+<p>In this example we shall create a service for posting transactions to a third party API endpoint say for marketing.</p>
+<p>create a <code>foxx</code> folder inside your sails application's controllers folder.</p>
+<p>you can organize multiple services in folders.</p>
+<p>create a <code>marketing</code> folder inside the <code>foxx</code> folder. While there, create a <code>manifest.json</code> file. <a href="https://www.arangodb.com/docs/stable/foxx-getting-started.html">The full process in creating foxx services is well documented here</a></p>
+<h3><a class="anchor" aria-hidden="true" id="manifestjson"></a><a href="#manifestjson" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>manifest.json</h3>
+<pre><code class="hljs">{
+  <span class="hljs-attr">"name"</span>: <span class="hljs-string">"marketing"</span>,
+  <span class="hljs-attr">"engines"</span>: {
+    <span class="hljs-attr">"arangodb"</span>: <span class="hljs-string">"^3.0.0"</span>
+  },
+
+  <span class="hljs-attr">"main"</span>: <span class="hljs-string">"index.js"</span>,
+  <span class="hljs-attr">"scripts"</span>: {
+    <span class="hljs-attr">"setup"</span>: <span class="hljs-string">"scripts/setup.js"</span>,
+    <span class="hljs-attr">"postEntry"</span>: <span class="hljs-string">"scripts/post-entry.js"</span>
+  }
+}
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="indexjs"></a><a href="#indexjs" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>index.js</h3>
+<p>The index.js file can be used to allow get and post requests in a service. You may never need to use this feature and it can easily be disabled</p>
+<pre><code class="hljs"><span class="hljs-meta">
+'use strict'</span>;
+<span class="hljs-keyword">const</span> createRouter = <span class="hljs-built_in">require</span>(<span class="hljs-string">'@arangodb/foxx/router'</span>);
+<span class="hljs-keyword">const</span> joi = <span class="hljs-built_in">require</span>(<span class="hljs-string">'joi'</span>);
+
+<span class="hljs-keyword">const</span> router = createRouter();
+
+<span class="hljs-built_in">module</span>.context.use(router);
+
+router
+.get(<span class="hljs-string">'/someroute'</span>, (req, res) =&gt; {
+<span class="hljs-comment">// const params = req.queryParams || {};</span>
+
+    <span class="hljs-keyword">try</span> {
+      <span class="hljs-keyword">const</span> entry = {<span class="hljs-attr">some</span>: <span class="hljs-string">'data'</span> };
+      res.send(entry);
+    } <span class="hljs-keyword">catch</span> (error) {
+      res.send(error);
+    }
+
+})
+.response(joi.object().required(), <span class="hljs-string">'return some data'</span>)
+.summary(<span class="hljs-string">'some data service'</span>)
+.description(<span class="hljs-string">'Service to get some data from arango server'</span>);
+
+
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="setupjs"></a><a href="#setupjs" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>setup.js</h3>
+<pre><code class="hljs"><span class="hljs-meta">'use strict'</span>;
+
+<span class="hljs-keyword">const</span> db = <span class="hljs-built_in">require</span>(<span class="hljs-string">'@arangodb'</span>).db;
+<span class="hljs-keyword">const</span> queues = <span class="hljs-built_in">require</span>(<span class="hljs-string">'@arangodb/foxx/queues'</span>);
+
+queues.create(<span class="hljs-string">'api-queue'</span>);
+
+<span class="hljs-keyword">if</span> (!db._collection(<span class="hljs-string">'marketing'</span>)) {
+  db._createDocumentCollection(<span class="hljs-string">'marketing'</span>);
+}
+
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="post-entryjs"></a><a href="#post-entryjs" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>post-entry.js</h3>
+<pre><code class="hljs"><span class="hljs-meta">'use strict'</span>;
+<span class="hljs-comment">// const db = require('@arangodb').db;</span>
+<span class="hljs-keyword">const</span> Joi = <span class="hljs-built_in">require</span>(<span class="hljs-string">'joi'</span>);
+<span class="hljs-keyword">const</span> request = <span class="hljs-built_in">require</span>(<span class="hljs-string">'@arangodb/request'</span>);
+
+<span class="hljs-keyword">const</span> schema = Joi.object({
+  <span class="hljs-attr">Url</span>: Joi.string().required(),
+  <span class="hljs-attr">Params</span>: Joi.object().required(),
+});
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">validate</span>(<span class="hljs-params">params</span>) </span>{
+  <span class="hljs-keyword">const</span> validate = schema.validate(params, { <span class="hljs-attr">allowUnknown</span>: <span class="hljs-literal">true</span> });
+  <span class="hljs-keyword">if</span> (validate.error) {
+    <span class="hljs-keyword">throw</span> <span class="hljs-string">`PARAMS_VALIDATION_ERROR <span class="hljs-subst">${validate.error}</span>`</span>;
+  }
+}
+
+<span class="hljs-keyword">const</span> { argv } = <span class="hljs-built_in">module</span>.context;
+<span class="hljs-keyword">const</span> params = <span class="hljs-built_in">Object</span>.assign({}, argv[<span class="hljs-number">0</span>]);
+<span class="hljs-keyword">let</span> response;
+<span class="hljs-keyword">try</span> {
+  validate(params);
+
+  response = request({
+    <span class="hljs-attr">method</span>: <span class="hljs-string">'post'</span>,
+    <span class="hljs-attr">url</span>:
+      process.env.NODE_ENV === <span class="hljs-string">'production'</span>
+        ? <span class="hljs-string">`https://marketing.endpoint.com/api<span class="hljs-subst">${params.Url}</span>`</span>
+        : <span class="hljs-string">`http://127.0.0.1:1556/api<span class="hljs-subst">${params.Url}</span>`</span>,
+    <span class="hljs-attr">headers</span>: { <span class="hljs-attr">apikey</span>: process.env.MARKETING_API_KEY },
+    <span class="hljs-attr">form</span>: params.Params,
+  });
+
+  <span class="hljs-keyword">if</span> (response.status !== <span class="hljs-number">200</span>) {
+    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">`Error posting <span class="hljs-subst">${<span class="hljs-built_in">JSON</span>.stringify(response)}</span>`</span>);
+  }
+  <span class="hljs-comment">// You may want to save</span>
+
+  db.marketing.save(params)
+} <span class="hljs-keyword">catch</span> (error) {
+  <span class="hljs-keyword">throw</span> error;
+}
+
+<span class="hljs-built_in">module</span>.exports = response;
+
+
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="installing-the-service"></a><a href="#installing-the-service" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>installing the service</h2>
+<p>The service folder has to be zipped. <code>zip -vr api/foxx/marketing.zip api/foxx/marketing</code>
+A service function can be created to run when sails lifts.</p>
+<pre><code class="hljs">loadFoxxServices: <span class="hljs-keyword">async</span> () =&gt; {
+    <span class="hljs-keyword">try</span> {
+      <span class="hljs-keyword">const</span> { dbConnection } = sails.getDatastore().manager;
+
+      <span class="hljs-keyword">let</span> services = <span class="hljs-keyword">await</span> dbConnection.listServices();
+      services = services.map(<span class="hljs-function">(<span class="hljs-params">service</span>) =&gt;</span> service.mount);
+
+
+
+      <span class="hljs-keyword">if</span> (!services.includes(<span class="hljs-string">'/marketing'</span>)) {
+        <span class="hljs-keyword">const</span> source = fs.createReadStream(
+          path.join(__dirname, <span class="hljs-string">'../foxx/marketing.zip'</span>)
+        );
+        <span class="hljs-keyword">await</span> dbConnection.installService(<span class="hljs-string">`/marketing`</span>, source);
+      } <span class="hljs-keyword">else</span> {
+        <span class="hljs-keyword">const</span> source = fs.readFileSync(
+          path.join(__dirname, <span class="hljs-string">'../foxx/marketing.zip'</span>)
+        );
+        <span class="hljs-keyword">await</span> dbConnection.replaceService(<span class="hljs-string">'/marketing'</span>, source);
+      }
+
+    } <span class="hljs-keyword">catch</span> (error) {
+      <span class="hljs-keyword">throw</span> error
+    }
+  },
+
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="using-the-service-in-a-transaction"></a><a href="#using-the-service-in-a-transaction" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Using the service in a transaction</h3>
+<p>The service can be used either by http requests or by creating queues</p>
+<p>an example using queues</p>
+<pre><code class="hljs"> <span class="hljs-keyword">const</span> apiQueue = queues.get(<span class="hljs-string">'api-queue'</span>);
+
+    <span class="hljs-keyword">const</span> Params = {
+      <span class="hljs-comment">// ...created params object</span>
+    };
+
+    apiQueue.push(
+      { <span class="hljs-attr">mount</span>: <span class="hljs-string">'/marketing'</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">'postEntry'</span> },
+      {
+        <span class="hljs-attr">Url</span>: <span class="hljs-string">'/marketing/end/point'</span>,
+        Params,
+      },
+      {
+        <span class="hljs-attr">delayUntil</span>: <span class="hljs-built_in">Date</span>.now() + <span class="hljs-number">1000</span>,
+        <span class="hljs-attr">backOff</span>: <span class="hljs-function">(<span class="hljs-params">failTimes</span>) =&gt;</span> failTimes * <span class="hljs-number">1000</span>,
+        <span class="hljs-attr">maxFailures</span>: <span class="hljs-number">100</span>,
+        <span class="hljs-comment">// repeatTimes: Infinity,</span>
+        <span class="hljs-comment">// repeatUntil =&gt; Date Timestamp,</span>
+        <span class="hljs-comment">// repeatDelay: 500, //Milisoconds</span>
+        <span class="hljs-comment">// success: ()=&gt;{},</span>
+        <span class="hljs-comment">// failure: ()=&gt;{}</span>
+      }
+    );
+</code></pre>
+<p>an example using foxx request</p>
+<pre><code class="hljs"> <span class="hljs-keyword">const</span> transaction = <span class="hljs-keyword">await</span> Transaction({
+        <span class="hljs-attr">action</span>: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">params</span>) </span>{
+          <span class="hljs-keyword">const</span> response = request({
+            <span class="hljs-attr">method</span>: <span class="hljs-string">'post'</span>,
+            <span class="hljs-attr">url</span>: <span class="hljs-string">`/_db/<span class="hljs-subst">${db._name()}</span>/_api/foxx/scripts/postEntry`</span>,
+            <span class="hljs-attr">qs</span>: {
+              <span class="hljs-attr">mount</span>: <span class="hljs-string">'/marketing'</span>,
+            },
+            <span class="hljs-attr">body</span>: {
+              <span class="hljs-attr">Url</span>: params.Url,
+              params.Params,
+            },
+            <span class="hljs-attr">json</span>: <span class="hljs-literal">true</span>,
+          });
+
+          <span class="hljs-keyword">const</span> entry = response.json;
+
+          <span class="hljs-keyword">if</span> (!entry._key) {
+            <span class="hljs-keyword">throw</span> <span class="hljs-string">`<span class="hljs-subst">${entry.errorMessage || <span class="hljs-string">'Error'</span>}</span>`</span>;
+          }
+          <span class="hljs-keyword">return</span> entry;
+        },
+
+        <span class="hljs-attr">writes</span>: [],
+        <span class="hljs-attr">params</span>: {
+            <span class="hljs-attr">Url</span>: <span class="hljs-string">'/marketing/end/point'</span>,
+        <span class="hljs-attr">Params</span>: {
+          <span class="hljs-comment">// ... the params you want to pass</span>
+        }
+        },
+      });
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="environment-variables"></a><a href="#environment-variables" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Environment Variables</h2>
+<p>You notice the use of environment variables. This is important for security and sharing variables between server and the db application.</p>
+<p>The example below uses ubuntu server</p>
+<p>in <code>/lib/systemd/system/arangodb3.service</code> add</p>
+<pre><code class="hljs"> EnvironmentFile=/home/<span class="hljs-keyword">user</span>/.<span class="hljs-keyword">env</span>
+</code></pre>
+<p>the added <code>.env</code> file should look like below example</p>
+<pre><code class="hljs"><span class="hljs-attr">FOO</span>=<span class="hljs-string">"BAR"</span>
+<span class="hljs-attr">NODE_ENV</span>=<span class="hljs-string">"production"</span>
+
+</code></pre>
+<p>on mac development environment, edit <code>cat /Applications/ArangoDB3-CLI.app/Contents/MacOS/ArangoDB3-CLI</code> and add your env variables source files</p>
+<pre><code class="hljs"><span class="hljs-meta">#!/bin/bash</span>
+WD=$(dirname <span class="hljs-string">"<span class="hljs-variable">$0</span>"</span>)
+<span class="hljs-comment"># We are in Contents/MacOS. However everything is located under Contents/Resources</span>
+ROOTDIR=$(<span class="hljs-built_in">cd</span> <span class="hljs-string">"<span class="hljs-variable">$WD</span>"</span> &amp;&amp; <span class="hljs-built_in">cd</span> <span class="hljs-string">"../Resources"</span> &amp;&amp; <span class="hljs-built_in">pwd</span>)
+<span class="hljs-comment"># create start script</span>
+
+
+<span class="hljs-built_in">source</span> ~/.bash_profile
+
+</code></pre>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/native"><span class="arrow-prev">← </span><span>Native Methods</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#creating-a-basic-foxx-service">Creating a basic foxx service</a><ul class="toc-headings"><li><a href="#manifestjson">manifest.json</a></li><li><a href="#indexjs">index.js</a></li><li><a href="#setupjs">setup.js</a></li><li><a href="#post-entryjs">post-entry.js</a></li></ul></li><li><a href="#installing-the-service">installing the service</a><ul class="toc-headings"><li><a href="#using-the-service-in-a-transaction">Using the service in a transaction</a></li></ul></li><li><a href="#environment-variables">Environment Variables</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/cloudhubicon256.png" alt="Sails-ArangoJs" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/installation.html">Getting Started</a><a href="/docs/create.html">API Reference</a></div><div><h5>Community</h5><a href="/en/users.html">User Showcase</a><a href="https://stackoverflow.com/questions/sails-arangojs/" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://twitter.com/cloudhubke" target="_blank" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/cloudhubke/sails-arangojs">GitHub</a></div></section><a href="https://www.cloudhub.co.ke/" target="_blank" rel="noreferrer noopener" class="fbOpenSource" style="opacity:0.8"><img src="/img/logo_horizontal.png" alt="Cloudhub Developer Community" width="250"/></a><section class="copyright">Copyright © 2020 Cloud Hub Limited</section></footer></div></body></html>

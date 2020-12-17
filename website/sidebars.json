@@ -16,9 +16,10 @@
       "crudmethods/count",
       "crudmethods/aggregate",
       "crudmethods/sample",
-      "crudmethods/findNear"
+      "crudmethods/findNear",
+      "crudmethods/findWithCount"
     ],
     "Graph & Transactions": ["transactions", "graph"],
-    "Going Native": ["native"]
+    "Going Native": ["native", "foxx"]
   }
 }
