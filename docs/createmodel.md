@@ -67,6 +67,52 @@ Edge definitions are put in an edge classType to tell the graph the direction fr
 
 In the above example, an edge definition shows a link from one airport to another.
 
+## Schema Validations
+
+Since version 3.7.1, ArangDB allows to define schema validations for newly inserted documents or updated documents. This is very useful. This is automatically integrated into sails-arangojs by checking at the `rules` property of a model attribute.
+
+The rules attribute should be an object that follows the [JSON Schema Conventions](https://json-schema.org/understanding-json-schema/index.html)
+
+the `required` property is automatically populated from `required, defaultsTo` properties of an attribute.
+
+To allow for schemaless (Or avoid validations) just add `shemaValidation: false` property to the model.
+By default, a model has `additionalProperties: true`. To enforce validation or opt out of additionalAtrributes, add `additionalProperties: false` property to the model or `additionalProperties: { type: "string" }`
+
+`json` attributes should be accompanined by `defaultsTo` property to differentiate between arrays and objects.
+
+`isIn` model validation is converted to `enum`.
+
+```
+  //shemaValidation: false,
+  //additionalProperties: false,
+
+  attributes: {
+    RefNo: {
+      type: 'string'
+      rules: {
+        pattern: `^[^A-Z\s]+$` // Dont allow capital letters and spaces
+        }
+      },
+      NationalId: { type: 'string', required: true, rules: {
+        pattern: '^[0-9]+$'
+      }},
+      Address: {
+        type: 'json'
+        defaultsTo: {},
+        rules:{
+          properties: {
+            LineI: {type: 'string'},
+            Phone: {type: 'string'},
+            Email: {type: 'string'}
+          },
+          required: ['Phone', 'Email']
+        }
+      }
+
+  }
+
+```
+
 ## Additional Features
 
 When defining Models, you can specify the class of the model to be mapped on arangodb. Its alos easy to create custom indexes with a combination of field attributes for your data integrity.

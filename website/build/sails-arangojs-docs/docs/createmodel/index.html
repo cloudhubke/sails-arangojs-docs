@@ -108,7 +108,15 @@ By default, a model has <code>additionalProperties: true</code>. To enforce vali
   <span class="hljs-comment">//additionalProperties: false,</span>
 
   <span class="hljs-attribute">attributes</span>: {
-      <span class="hljs-attribute">NationalId</span>: { <span class="hljs-attribute">type</span>: <span class="hljs-string">'string'</span>, <span class="hljs-attribute">required</span>: true},
+    <span class="hljs-attribute">RefNo</span>: {
+      <span class="hljs-attribute">type</span>: <span class="hljs-string">'string'</span>
+      <span class="hljs-attribute">rules</span>: {
+        <span class="hljs-attribute">pattern</span>: <span class="hljs-built_in">`^[^A-Z\s]+$`</span> <span class="hljs-comment">// Dont allow capital letters and spaces</span>
+        }
+      },
+      <span class="hljs-attribute">NationalId</span>: { <span class="hljs-attribute">type</span>: <span class="hljs-string">'string'</span>, <span class="hljs-attribute">required</span>: true, <span class="hljs-attribute">rules</span>: {
+        <span class="hljs-attribute">pattern</span>: <span class="hljs-string">'^[0-9]+$'</span>
+      }},
       <span class="hljs-attribute">Address</span>: {
         <span class="hljs-attribute">type</span>: <span class="hljs-string">'json'</span>
         <span class="hljs-attribute">defaultsTo</span>: {},

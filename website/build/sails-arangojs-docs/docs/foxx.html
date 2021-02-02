@@ -264,8 +264,12 @@ A service function can be created to run when sails lifts.</p>
    <span class="hljs-built_in">source</span> ~/.profile
 <span class="hljs-keyword">fi</span>
 
-
 </code></pre>
+<p>If the method does not work. You can edit <code>/lib/systemd/system/arangodb3.service</code>. This is a <a href="https://www.freedesktop.org/software/systemd/man/systemd.service.html">systemd.service file</a>. Add <code>EnvironmentFile=/etc/env</code></p>
+<p>Make sure you proceed to create the file to look like this.</p>
+<pre><code class="hljs"><span class="hljs-attr">FOO</span>=<span class="hljs-string">"BAR"</span>
+</code></pre>
+<p>Finaly, restart ArangoDb.</p>
 <p>type the following command <code>source ~/.profile</code> and then restart the arangodb service</p>
 <p>on mac development environment, edit <code>cat /Applications/ArangoDB3-CLI.app/Contents/MacOS/ArangoDB3-CLI</code> and add your env variables source files</p>
 <pre><code class="hljs"><span class="hljs-meta">#!/bin/bash</span>
