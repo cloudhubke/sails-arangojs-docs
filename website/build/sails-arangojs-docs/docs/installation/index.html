@@ -65,24 +65,24 @@
 </code></pre>
 <h3><a class="anchor" aria-hidden="true" id="replace-the-orm-hook"></a><a href="#replace-the-orm-hook" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Replace the orm hook</h3>
 <p>Remove sails-hook-orm from your package.json to avoid conflict and install sails-orm hook.</p>
-<pre><code class="hljs css language-sh">$ npm install sails-orm-hook
+<pre><code class="hljs css language-sh">$ npm install @cloudhub-js/sails-orm-hook
 </code></pre>
 <p>Sails-ArangoJs uses a customized orm hook cloned from the <a href="https://github.com/balderdashy/sails-hook-orm">official orm hook for sails js</a>. This step is a must. Otherwise the adapter will not work.</p>
 <p>ArangoDB being a Graph/Document/Key-Value Database, small changes had to be done on the orm to accomodate this nature of the database. It also allows us to harness the powerful features of a Graph Database right away from sails. No changes were made on the hook-orm despite cloning it to another module (sails-orm-hook). This was done to bring on board waternile orm as a package.</p>
 <pre><code class="hljs css language-diff">    "dependencies": {
     -    "sails-hook-orm": "^2.0.0-16",
-    +    "sails-orm-hook": "^3.0.0-15"
+    +    "@cloudhub-js/sails-orm-hook": "^3.0.0-15"
     },
 </code></pre>
 <h2><a class="anchor" aria-hidden="true" id="install-sails-arangojs"></a><a href="#install-sails-arangojs" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Install Sails-ArangoJs</h2>
 <p>To install this adapter, run:</p>
-<pre><code class="hljs css language-sh">$ npm install sails-arangojs
+<pre><code class="hljs css language-sh">$ npm install @cloudhub-js/sails-arangojs
 </code></pre>
 <h2><a class="anchor" aria-hidden="true" id="configure-datastorejs"></a><a href="#configure-datastorejs" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Configure Datastore.js</h2>
 <p>Then <a href="https://sailsjs.com/documentation/reference/configuration/sails-config-datastores">connect the adapter</a> to one or more of your app's datastores.</p>
 <p>go to <code>config/datastore.js</code> and edit.</p>
 <pre><code class="hljs">  <span class="hljs-attribute">default</span>: {
-    <span class="hljs-attribute">adapter</span>: <span class="hljs-string">'sails-arangojs'</span>,
+    <span class="hljs-attribute">adapter</span>: <span class="hljs-string">'@cloudhub-js/sails-arangojs'</span>,
     <span class="hljs-attribute">url</span>: <span class="hljs-string">'arangodb://user:password@localhost:2424/db'</span>,
     <span class="hljs-attribute">graph</span>: true,
   },

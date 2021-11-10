@@ -121,6 +121,7 @@ By default, a model has <code>additionalProperties: true</code>. To enforce vali
         <span class="hljs-attribute">type</span>: <span class="hljs-string">'json'</span>
         <span class="hljs-attribute">defaultsTo</span>: {},
         <span class="hljs-attribute">rules</span>:{
+          <span class="hljs-attribute">linkCollections</span>: [],
           <span class="hljs-attribute">properties</span>: {
             <span class="hljs-attribute">LineI</span>: {<span class="hljs-attribute">type</span>: <span class="hljs-string">'string'</span>},
             <span class="hljs-attribute">Phone</span>: {<span class="hljs-attribute">type</span>: <span class="hljs-string">'string'</span>},
@@ -133,16 +134,97 @@ By default, a model has <code>additionalProperties: true</code>. To enforce vali
   }
 
 </code></pre>
-<h2><a class="anchor" aria-hidden="true" id="additional-features"></a><a href="#additional-features" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Additional Features</h2>
-<p>When defining Models, you can specify the class of the model to be mapped on arangodb. Its alos easy to create custom indexes with a combination of field attributes for your data integrity.</p>
-<pre><code class="hljs">  <span class="hljs-attribute">classType</span>: <span class="hljs-string">'Vertex'</span>, <span class="hljs-comment">//Either of Vertex, Edge (default is Vertex)</span>
-  <span class="hljs-attribute">indexes</span>: [
-    { <span class="hljs-attribute">fields</span>: [<span class="hljs-string">'Field1'</span>, <span class="hljs-string">'Field2'</span>]},
-    { <span class="hljs-attribute">fields</span>: [<span class="hljs-string">'Field2'</span>, <span class="hljs-string">'Field3'</span>], <span class="hljs-attribute">unique</span>: true },
-  ],
-  <span class="hljs-attribute">attributes</span>: {
-       <span class="hljs-attribute">username</span>: { <span class="hljs-attribute">type</span>: <span class="hljs-string">'string'</span> },
+<h2><a class="anchor" aria-hidden="true" id="referential-integrity"></a><a href="#referential-integrity" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Referential Integrity</h2>
+<p>When saving documents, you may want to link documents that refer to each other and maintain referential integrity.
+ArangoDB used for sails-arangojs has been customized to maintain integrity when certain parameters have been used to save records. For Example, look at the documents below.</p>
+<pre><code class="hljs"><span class="hljs-symbol">  flight:</span> {
+<span class="hljs-symbol">    From:</span> {
+<span class="hljs-symbol">      _id:</span> <span class="hljs-string">"airport/msa"</span>,
+<span class="hljs-symbol">      id:</span> <span class="hljs-string">"msa"</span>,
+<span class="hljs-symbol">      AirportName:</span> <span class="hljs-string">"Mombasa International Airport"</span>
+    },
+<span class="hljs-symbol">    To:</span> {
+<span class="hljs-symbol">      _id:</span> <span class="hljs-string">"airport/nbo"</span>,
+<span class="hljs-symbol">      id:</span> <span class="hljs-string">"nbo"</span>,
+<span class="hljs-symbol">      AirportName:</span> <span class="hljs-string">"Jomo Kenyatta International Airport"</span>
+    }
   }
+</code></pre>
+<p>The schema definition for the model is as follows:</p>
+<pre><code class="hljs">  ...,
+  <span class="hljs-selector-tag">From</span>: {
+        <span class="hljs-attribute">type</span>: <span class="hljs-string">'json'</span>
+        defaultsTo: {},
+        <span class="hljs-selector-tag">rules</span>:{
+          <span class="hljs-attribute">linkCollections</span>: [<span class="hljs-string">'airport'</span>],
+          properties: {
+            id: {type: <span class="hljs-string">'string'</span>},
+            _<span class="hljs-selector-tag">id</span>: {<span class="hljs-attribute">type</span>: <span class="hljs-string">'string'</span>},
+          },
+          <span class="hljs-selector-tag">required</span>: <span class="hljs-selector-attr">['id']</span>
+        }
+  },
+  <span class="hljs-selector-tag">To</span>: {
+        <span class="hljs-attribute">type</span>: <span class="hljs-string">'json'</span>
+        defaultsTo: {},
+        <span class="hljs-selector-tag">rules</span>:{
+          <span class="hljs-attribute">linkCollections</span>: [<span class="hljs-string">'airport'</span>],
+          properties: {
+            id: {type: <span class="hljs-string">'string'</span>},
+            _<span class="hljs-selector-tag">id</span>: {<span class="hljs-attribute">type</span>: <span class="hljs-string">'string'</span>},
+          },
+          <span class="hljs-selector-tag">required</span>: <span class="hljs-selector-attr">['id']</span>
+        }
+  },
+</code></pre>
+<p>When saved, it will not be possible to delete vertex <code>airport/msa</code> or <code>airport/nbo</code> because they are used in an edge somewhere or a vertex anywhere else in the database.</p>
+<p>Another alternative is to save references as an array.</p>
+<pre><code class="hljs">  <span class="hljs-comment">// model definition</span>
+  <span class="hljs-attribute">Airports</span>: {
+        <span class="hljs-attribute">type</span>: <span class="hljs-string">'json'</span>
+        <span class="hljs-attribute">defaultsTo</span>: [],
+        <span class="hljs-attribute">rules</span>:{
+          <span class="hljs-attribute">linkCollections</span>: [<span class="hljs-string">'airport'</span>],
+          <span class="hljs-attribute">items</span>: {
+            <span class="hljs-attribute">type</span>: <span class="hljs-string">'object'</span>,
+            <span class="hljs-attribute">properties</span>: {
+              <span class="hljs-attribute">id</span>: {<span class="hljs-attribute">type</span>: <span class="hljs-string">'string'</span>},
+              <span class="hljs-attribute">_id</span>: {<span class="hljs-attribute">type</span>: <span class="hljs-string">'string'</span>},
+            },
+            <span class="hljs-attribute">required</span>: [<span class="hljs-string">'id'</span>]
+          }
+        }
+  },
 
 </code></pre>
-</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/installation"><span class="arrow-prev">← </span><span>Installation</span></a><a class="docs-next button" href="/docs/testing"><span>Testing</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#creating-models-in-sails">Creating Models in Sails</a></li><li><a href="#tenanttype">tenantType</a></li><li><a href="#adding-attributes">Adding attributes</a></li><li><a href="#edge-definitions">Edge Definitions</a></li><li><a href="#schema-validations">Schema Validations</a></li><li><a href="#additional-features">Additional Features</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/cloudhubicon256.png" alt="Sails-ArangoJs" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/installation.html">Getting Started</a><a href="/docs/create.html">API Reference</a></div><div><h5>Community</h5><a href="/en/users.html">User Showcase</a><a href="https://stackoverflow.com/questions/sails-arangojs/" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://twitter.com/cloudhubke" target="_blank" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/cloudhubke/sails-arangojs">GitHub</a></div></section><a href="https://www.cloudhub.co.ke/" target="_blank" rel="noreferrer noopener" class="fbOpenSource" style="opacity:0.8"><img src="/img/logo_horizontal.png" alt="Cloudhub Developer Community" width="250"/></a><section class="copyright">Copyright © 2021 Cloud Hub Limited</section></footer></div></body></html>
+<p>Example document below</p>
+<pre><code class="hljs"><span class="hljs-symbol">   Airports:</span> [
+     {
+<span class="hljs-symbol">      _id:</span> <span class="hljs-string">"airport/msa"</span>,
+<span class="hljs-symbol">      id:</span> <span class="hljs-string">"msa"</span>,
+<span class="hljs-symbol">      AirportName:</span> <span class="hljs-string">"Mombasa International Airport"</span>
+    },{
+<span class="hljs-symbol">      _id:</span> <span class="hljs-string">"airport/nbo"</span>,
+<span class="hljs-symbol">      id:</span> <span class="hljs-string">"nbo"</span>,
+<span class="hljs-symbol">      AirportName:</span> <span class="hljs-string">"Jomo Kenyatta International Airport"</span>
+    }
+
+  ],
+</code></pre>
+<p>References can either be recorded in arrays or document as long as the linkCollections property has been set in schema. and the <code>_id</code> field used to save the link.</p>
+<h2><a class="anchor" aria-hidden="true" id="additional-features"></a><a href="#additional-features" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Additional Features</h2>
+<p>When defining Models, you can specify the class of the model to be mapped on arangodb. Its alos easy to create custom indexes with a combination of field attributes for your data integrity.</p>
+<pre><code class="hljs"><span class="hljs-symbol">
+classType:</span> <span class="hljs-string">'Vertex'</span>, <span class="hljs-comment">//Either of Vertex, Edge (default is Vertex)</span>
+<span class="hljs-string">indexes:</span> [
+{ <span class="hljs-string">fields:</span> [<span class="hljs-string">'Field1'</span>, <span class="hljs-string">'Field2'</span>]},
+{ <span class="hljs-string">fields:</span> [<span class="hljs-string">'Field2'</span>, <span class="hljs-string">'Field3'</span>], <span class="hljs-string">unique:</span> <span class="hljs-literal">true</span> },
+],
+<span class="hljs-string">attributes:</span> {
+<span class="hljs-string">username:</span> { <span class="hljs-string">type:</span> <span class="hljs-string">'string'</span> },
+}
+
+</code></pre>
+<pre><code class="hljs">
+</code></pre>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/installation"><span class="arrow-prev">← </span><span>Installation</span></a><a class="docs-next button" href="/docs/testing"><span>Testing</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#creating-models-in-sails">Creating Models in Sails</a></li><li><a href="#tenanttype">tenantType</a></li><li><a href="#adding-attributes">Adding attributes</a></li><li><a href="#edge-definitions">Edge Definitions</a></li><li><a href="#schema-validations">Schema Validations</a></li><li><a href="#referential-integrity">Referential Integrity</a></li><li><a href="#additional-features">Additional Features</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/cloudhubicon256.png" alt="Sails-ArangoJs" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/installation.html">Getting Started</a><a href="/docs/create.html">API Reference</a></div><div><h5>Community</h5><a href="/en/users.html">User Showcase</a><a href="https://stackoverflow.com/questions/sails-arangojs/" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://twitter.com/cloudhubke" target="_blank" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/cloudhubke/sails-arangojs">GitHub</a></div></section><a href="https://www.cloudhub.co.ke/" target="_blank" rel="noreferrer noopener" class="fbOpenSource" style="opacity:0.8"><img src="/img/logo_horizontal.png" alt="Cloudhub Developer Community" width="250"/></a><section class="copyright">Copyright © 2021 Cloud Hub Limited</section></footer></div></body></html>

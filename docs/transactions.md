@@ -60,3 +60,40 @@ To implement a transaction, Sails-ArangoJs abstracts the implementation to make 
         });
 
 ```
+
+## Client side transactions
+
+You may also want to execute transaction on the client side code.
+
+```
+ const trx = await dbConnection.beginTransaction({
+        // read: ['vertices'],
+        write: ['account', 'tx'], // collection instances can be passed directly
+      });
+
+      let acs;
+
+      try {
+
+
+         acs = await Account.create({ _key: '5555', Name: 'John' }).meta({
+           fetch: true,
+           trx,
+         });
+
+
+         acs = await Account.destroy({
+           createdAt: { $gt: Date.now() },
+         }).meta({
+           trx,
+           fetch: true,
+         });
+
+        await trx.commit();
+      } catch (error) {
+        await trx.abort();
+        throw error;
+      }
+
+
+```

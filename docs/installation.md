@@ -27,7 +27,7 @@ sails new sails-arangojs-example &&  cd sails-arangojs-example
 Remove sails-hook-orm from your package.json to avoid conflict and install sails-orm hook.
 
 ```sh
-$ npm install sails-orm-hook
+$ npm install @cloudhub-js/sails-orm-hook
 ```
 
 Sails-ArangoJs uses a customized orm hook cloned from the [official orm hook for sails js](https://github.com/balderdashy/sails-hook-orm). This step is a must. Otherwise the adapter will not work.
@@ -37,7 +37,7 @@ ArangoDB being a Graph/Document/Key-Value Database, small changes had to be done
 ```diff
     "dependencies": {
     -    "sails-hook-orm": "^2.0.0-16",
-    +    "sails-orm-hook": "^3.0.0-15"
+    +    "@cloudhub-js/sails-orm-hook": "^3.0.0-15"
     },
 ```
 
@@ -46,7 +46,7 @@ ArangoDB being a Graph/Document/Key-Value Database, small changes had to be done
 To install this adapter, run:
 
 ```sh
-$ npm install sails-arangojs
+$ npm install @cloudhub-js/sails-arangojs
 ```
 
 ## Configure Datastore.js
@@ -57,7 +57,7 @@ go to `config/datastore.js` and edit.
 
 ```
   default: {
-    adapter: 'sails-arangojs',
+    adapter: '@cloudhub-js/sails-arangojs',
     url: 'arangodb://user:password@localhost:2424/db',
     graph: true,
   },
