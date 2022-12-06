@@ -5,9 +5,9 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-const React = require('react');
+const React = require("react");
 
-const CompLibrary = require('../../core/CompLibrary.js');
+const CompLibrary = require("../../core/CompLibrary.js");
 
 const MarkdownBlock = CompLibrary.MarkdownBlock; /* Used to read markdown */
 const Container = CompLibrary.Container;
@@ -15,13 +15,13 @@ const GridBlock = CompLibrary.GridBlock;
 
 class HomeSplash extends React.Component {
   render() {
-    const { siteConfig, language = '' } = this.props;
+    const { siteConfig, language = "" } = this.props;
     const { baseUrl, docsUrl } = siteConfig;
-    const docsPart = `${docsUrl ? `${docsUrl}/` : ''}`;
-    const langPart = `${language ? `${language}/` : ''}`;
-    const docUrl = doc => `${baseUrl}${docsPart}${langPart}${doc}`;
+    const docsPart = `${docsUrl ? `${docsUrl}/` : ""}`;
+    const langPart = `${language ? `${language}/` : ""}`;
+    const docUrl = (doc) => `${baseUrl}${docsPart}${langPart}${doc}`;
 
-    const SplashContainer = props => (
+    const SplashContainer = (props) => (
       <div className="homeContainer">
         <div className="homeSplashFade">
           <div className="wrapper homeWrapper">{props.children}</div>
@@ -29,7 +29,7 @@ class HomeSplash extends React.Component {
       </div>
     );
 
-    const Logo = props => (
+    const Logo = (props) => (
       <div className="projectLogo">
         <img src={props.img_src} alt="Project Logo" />
       </div>
@@ -39,13 +39,13 @@ class HomeSplash extends React.Component {
       <h2 className="projectTitle">
         {siteConfig.title}
 
-        <small style={{ maxWidth: 500, lineHeight: '1.5em' }}>
+        <small style={{ maxWidth: 500, lineHeight: "1.5em" }}>
           {siteConfig.tagline}
         </small>
       </h2>
     );
 
-    const PromoSection = props => (
+    const PromoSection = (props) => (
       <div className="section promoSection">
         <div className="promoRow">
           <div className="pluginRowBlock">{props.children}</div>
@@ -53,7 +53,7 @@ class HomeSplash extends React.Component {
       </div>
     );
 
-    const Button = props => (
+    const Button = (props) => (
       <div className="pluginWrapper buttonWrapper">
         <a className="button" href={props.href} target={props.target}>
           {props.children}
@@ -63,7 +63,7 @@ class HomeSplash extends React.Component {
 
     return (
       <SplashContainer>
-        <Logo img_src={`${baseUrl}img/sailsarangojs.png`} />
+        <Logo img_src={`${baseUrl}img/cloudhubicon256.png`} />
         <div className="inner">
           <ProjectTitle siteConfig={siteConfig} />
           <PromoSection>
@@ -77,12 +77,12 @@ class HomeSplash extends React.Component {
 
 class Index extends React.Component {
   render() {
-    const { config: siteConfig, language = '' } = this.props;
+    const { config: siteConfig, language = "" } = this.props;
     const { baseUrl } = siteConfig;
 
-    const Block = props => (
+    const Block = (props) => (
       <Container
-        padding={['bottom', 'top']}
+        padding={["bottom", "top"]}
         id={props.id}
         background={props.background}
       >
@@ -97,7 +97,7 @@ class Index extends React.Component {
     const FeatureCallout = () => (
       <div
         className="productShowcaseSection paddingBottom"
-        style={{ textAlign: 'center', backgroundColor: '#acdaff' }}
+        style={{ textAlign: "center", backgroundColor: "#acdaff" }}
       >
         <a href="http://www.cloudhub.co.ke" rel="no_opener no_refferer">
           <h2>We are ready to work with you.</h2>
@@ -113,13 +113,13 @@ class Index extends React.Component {
       <Block id="try">
         {[
           {
-            title: 'Built on top of SailsJs and Waterline',
+            title: "Built on top of SailsJs and Waterline",
             content:
-              'We love SailsJs and we love waterline. Thats why we cloned waterline and built Sails-ArangoJs on top of it to leverage ' +
-              '[the power of sails](https://sailsjs.org/) which provides you with the best experience as a server side NodeJs developer ' +
-              'The illustrations you see on this page are from unDraw.',
+              "We love SailsJs and we love waterline. Thats why we cloned waterline and built Sails-ArangoJs on top of it to leverage " +
+              "[the power of sails](https://sailsjs.org/) which provides you with the best experience as a server side NodeJs developer " +
+              "The illustrations you see on this page are from unDraw.",
             image: `${baseUrl}img/sailsjs.png`,
-            imageAlign: 'left',
+            imageAlign: "left",
           },
         ]}
       </Block>
@@ -129,11 +129,11 @@ class Index extends React.Component {
       <Block background="light">
         {[
           {
-            title: 'ACID Transactions for your finality gurantee',
+            title: "ACID Transactions for your finality gurantee",
             content:
-              'Each transaction on ArangoDB secures your gurantee that you data has been securely persisters with Atomicity, Consistency, Isolation and Durability for your highest level of confidence.\n\n Sails-ArangoJS adds no more nor extracts any less.',
+              "Each transaction on ArangoDB secures your gurantee that you data has been securely persisters with Atomicity, Consistency, Isolation and Durability for your highest level of confidence.\n\n Sails-ArangoJS adds no more nor extracts any less.",
             image: `${baseUrl}img/transaction.svg`,
-            imageAlign: 'right',
+            imageAlign: "right",
           },
         ]}
       </Block>
@@ -144,24 +144,24 @@ class Index extends React.Component {
         {[
           {
             content:
-              'When you’re building your application, ultimately what matters most is having the right data model available for the task at hand.',
+              "When you’re building your application, ultimately what matters most is having the right data model available for the task at hand.",
             image: `${baseUrl}img/arangoicon.png`,
-            imageAlign: 'top',
-            title: 'One engine. One query language. Multiple models.',
+            imageAlign: "top",
+            title: "One engine. One query language. Multiple models.",
           },
           {
             content:
-              'Create schemaless models on the fly and sails-arangojs creates the collections, generated indexes, graph and gives your the power of a pro to get started quickly and easily.',
+              "Create schemaless models on the fly and sails-arangojs creates the collections, generated indexes, graph and gives your the power of a pro to get started quickly and easily.",
             image: `${baseUrl}img/undraw_operating_system.svg`,
-            imageAlign: 'top',
-            title: 'Seamless Integration',
+            imageAlign: "top",
+            title: "Seamless Integration",
           },
           {
             content:
-              'ArangoDb has the best  documentation  for any modern database out there. Powered by an enthusiastic team, issues are resolved with speed. Updates and new features are released regularly with minimal or no breaking changes.',
+              "ArangoDb has the best  documentation  for any modern database out there. Powered by an enthusiastic team, issues are resolved with speed. Updates and new features are released regularly with minimal or no breaking changes.",
             image: `${baseUrl}img/undraw_code_review.svg`,
-            imageAlign: 'top',
-            title: 'Comprehensive documentation',
+            imageAlign: "top",
+            title: "Comprehensive documentation",
           },
         ]}
       </Block>
@@ -173,14 +173,15 @@ class Index extends React.Component {
       }
 
       const showcase = siteConfig.users
-        .filter(user => user.pinned)
-        .map(user => (
+        .filter((user) => user.pinned)
+        .map((user) => (
           <a href={user.infoLink} key={user.infoLink}>
             <img src={user.image} alt={user.caption} title={user.caption} />
           </a>
         ));
 
-      const pageUrl = page => baseUrl + (language ? `${language}/` : '') + page;
+      const pageUrl = (page) =>
+        baseUrl + (language ? `${language}/` : "") + page;
 
       return (
         <div className="productShowcaseSection paddingBottom">
@@ -188,7 +189,7 @@ class Index extends React.Component {
           <p>This project is used by all these projects</p>
           <div className="logos">{showcase}</div>
           <div className="more-users">
-            <a className="button" href={pageUrl('users.html')}>
+            <a className="button" href={pageUrl("users.html")}>
               More {siteConfig.title} Users
             </a>
           </div>

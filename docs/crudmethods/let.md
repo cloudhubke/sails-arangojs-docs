@@ -27,6 +27,75 @@ const loans = await Loan.let({
   .find()
   .where({
     LoanStatus: "OUTSTANDING",
-    $Diff: { $gt: "record.PaidMonths" },
+    $Diff: { $gt: "$record.PaidMonths" },
   });
+```
+
+You can also add the $ sign before `record` to tell js this is not a string value
+
+Example
+
+```js
+const count = await _Accounttransaction(dsName)
+  .let({
+    from: "$record._from",
+  })
+  .count({
+    "FromAccount._id": { $ne: "$record._from" },
+  });
+```
+
+This is translated to:
+
+```
+FOR record in accounttransaction
+LET from = record._from
+
+ FILTER record.FromAccount._id != record._from COLLECT WITH COUNT INTO length RETURN length
+```
+
+## WITHOUT $ SIGN:
+
+```js
+const count = await _Accounttransaction(dsName)
+  .let({
+    from: "record._from",
+  })
+  .count({
+    "FromAccount._id": { $ne: "$record._from" },
+  });
+```
+
+This is translated to:
+
+```
+    FOR record in accounttransaction
+    LET from = 'record._from'
+
+    FILTER record.FromAccount._id != record._from COLLECT WITH COUNT INTO length RETURN length
+```
+
+This is not the result we want.
+
+IN OTHER WORDS JUST APPEND a $ sign of the value is NOT A STRING
+
+## $ SIGN INFRONT OF KEYS
+
+const count = await \_Accounttransaction(dsName)
+.let({
+from: '$record._from',
+      })
+      .count({
+        '$FromAccount.\_id': { $ne: '$record.\_from' },
+});
+
+Translates:
+
+```
+
+FOR record in accounttransaction
+LET from = record._from
+
+ FILTER FromAccount._id != record._from COLLECT WITH COUNT INTO length RETURN length
+
 ```
